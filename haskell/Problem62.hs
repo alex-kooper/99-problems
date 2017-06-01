@@ -23,5 +23,6 @@ internals t = internals' t []
 atLevel :: Tree a -> Int -> [a]
 atLevel Empty _  = []
 atLevel (Branch x l r) level
-      | level <= 1 = [x]
-      | otherwise  = atLevel l (level - 1) <> atLevel r (level - 1)
+  | level <  1 = []
+  | level == 1 = [x]
+  | otherwise  = atLevel l (level - 1) <> atLevel r (level - 1)
