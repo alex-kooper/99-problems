@@ -4,7 +4,7 @@ object P70 extends App {
 
   implicit def string2MTree(s: String): MTree[Char] = parseTree(s.toList)._1
 
-  def parseTree(l: List[Char]): (MTree[Char], List[Char]) = l match {
+  private[this] def parseTree(l: List[Char]): (MTree[Char], List[Char]) = l match {
     case c :: restChars =>
       val (children, charsToPass) = parseChildren(restChars)
       (MTree(c, children), charsToPass)
@@ -12,7 +12,7 @@ object P70 extends App {
     case _ => throw new Exception(s"Error: Not a parsable tree")
   }
 
-  def parseChildren(l: List[Char]): (List[MTree[Char]], List[Char]) = l match {
+  private[this] def parseChildren(l: List[Char]): (List[MTree[Char]], List[Char]) = l match {
     case '^' :: rest => (Nil, rest)
 
     case chars =>
