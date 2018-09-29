@@ -4,7 +4,7 @@ object P70C extends App {
 
   implicit class MTreeOps[T](tree: MTree[T]) {
     def nodeCount: Int = {
-      tree.children.map(_.nodeCount).sum + 1
+      tree.children.view.map(_.nodeCount).sum + 1
     }
   }
 
