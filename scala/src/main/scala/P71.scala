@@ -16,6 +16,9 @@ object P71 extends App {
       List(parent, child) :: childPaths.map(parent :: _)
   }
 
+  println("Problem P71")
+  println("____________")
+
   println("string2MTree(\"afg^^c^bd^e^^^\").internalPathLength = " +
            string2MTree("afg^^c^bd^e^^^").internalPathLength)
 }

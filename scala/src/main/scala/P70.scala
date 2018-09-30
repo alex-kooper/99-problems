@@ -28,6 +28,6 @@ object P70 extends App {
   val tree: MTree[Char] = s
 
   println(s"The original node string: $s")
-  println(s"Resulting tree: ${tree.toMTreeString}")
-  println(s"Converted back to a node string: ${tree.toString}")
+  println(s"Resulting tree: $tree")
+  println(s"Converted back to a node string: ${tree.nodeString}")
 }

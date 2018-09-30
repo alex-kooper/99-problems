@@ -6,6 +6,9 @@ object P72 extends App {
     def postorder: List[T] = tree.children.flatMap(_.postorder) :+ tree.value
   }
 
-  println("string2MTree(\"afg^^c^bd^e^^^\").internalPathLength = " +
+  println("Problem P72")
+  println("____________")
+
+  println("string2MTree(\"afg^^c^bd^e^^^\").postorder = " +
            string2MTree("afg^^c^bd^e^^^").postorder)
 }
