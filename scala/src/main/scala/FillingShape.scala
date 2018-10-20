@@ -48,13 +48,11 @@ object FillingShape extends App {
   }
 
   def fillShape(field: Field, p: Point): Field = {
-    val points = adjacentPoints(field, p)
-
     if(field.hasPoint(p))
       field
     else {
       val newField = field.setPoint(p)
-      points.foldLeft(newField)(fillShape)
+      adjacentPoints(field, p).foldLeft(newField)(fillShape)
     }
   }
 
