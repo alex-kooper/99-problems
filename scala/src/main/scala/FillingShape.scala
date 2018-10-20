@@ -71,7 +71,7 @@ object FillingShape extends App {
       |""".stripMargin
 
   val field = Field.fromString(fieldString)
-  val p = Point(field.sizeX / 2, field.sizeY / 2)
+  val pointInside = Point(field.sizeX / 2, field.sizeY / 2)
 
   println("Orginal Shape")
   println(field)
@@ -79,5 +79,5 @@ object FillingShape extends App {
   println()
 
   println("Filled Shape")
-  println(fillShape(field, p))
+  println(fillShape(field, pointInside))
 }
