@@ -47,12 +47,12 @@ object FillingShape extends App {
     } yield newPoint
   }
 
-  def fillShape(field: Field, p: Point): Field = {
-    if(field.hasPoint(p))
+  def fillShape(field: Field, pointInside: Point): Field = {
+    if(field.hasPoint(pointInside))
       field
     else {
-      val newField = field.setPoint(p)
-      adjacentPoints(field, p).foldLeft(newField)(fillShape)
+      val newField = field.setPoint(pointInside)
+      adjacentPoints(field, pointInside).foldLeft(newField)(fillShape)
     }
   }
 
