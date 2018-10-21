@@ -1,3 +1,4 @@
+import scala.annotation.tailrec
 
 case class Point(x: Int, y: Int)
 
@@ -47,13 +48,28 @@ object FillingShape extends App {
     } yield newPoint
   }
 
-  def fillShape(field: Field, pointInside: Point): Field = {
-    if(field.hasPoint(pointInside))
+  def dfsFillShape(field: Field, pointInside: Point): Field = {
+    if (field.hasPoint(pointInside))
       field
     else {
       val newField = field.setPoint(pointInside)
-      adjacentPoints(field, pointInside).foldLeft(newField)(fillShape)
+      adjacentPoints(field, pointInside).foldLeft(newField)(dfsFillShape)
     }
+  }
+
+  def bfsFillShape(field: Field, pointInside: Point): Field = {
+    @tailrec
+    def loop(field: Field, points: List[Point]): Field = {
+      val nextField = points.foldLeft(field)(_.setPoint(_))
+      val nextPoints = points.flatMap(adjacentPoints(field, _))
+
+      if(nextPoints.isEmpty)
+        nextField
+      else
+        loop(nextField, nextPoints)
+    }
+
+    loop(field, List(pointInside))
   }
 
   val fieldString =
@@ -78,6 +94,11 @@ object FillingShape extends App {
 
   println()
 
-  println("Filled Shape")
-  println(fillShape(field, pointInside))
+  println("DFS Filled Shape")
+  println(dfsFillShape(field, pointInside))
+
+  println()
+
+  println("BFS Filled Shape")
+  println(bfsFillShape(field, pointInside))
 }
