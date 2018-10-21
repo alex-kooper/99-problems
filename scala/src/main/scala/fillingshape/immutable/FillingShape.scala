@@ -1,3 +1,5 @@
+package fillingshape.immutable
+
 import scala.annotation.tailrec
 
 case class Point(x: Int, y: Int)
@@ -42,8 +44,8 @@ object FillingShape extends App {
       newPoint = Point(point.x + deltaX, point.y + deltaY)
 
       if
-        (0 until field.sizeX).contains(point.x) &&
-        (0 until field.sizeY).contains(point.y) &&
+        (0 until field.sizeX).contains(newPoint.x) &&
+        (0 until field.sizeY).contains(newPoint.y) &&
         !field.hasPoint(newPoint)
     } yield newPoint
   }
@@ -89,7 +91,7 @@ object FillingShape extends App {
   val field = Field.fromString(fieldString)
   val pointInside = Point(field.sizeX / 2, field.sizeY / 2)
 
-  println("Orginal Shape")
+  println("Original Shape")
   println(field)
 
   println()
