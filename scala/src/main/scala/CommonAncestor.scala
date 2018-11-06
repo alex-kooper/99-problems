@@ -5,7 +5,7 @@ object CommonAncestor extends App {
 
   def pathFromNode[T](node: MTree[T], value: T): Option[List[T]] = {
     if(node.value != value) {
-      node.children
+      node.children.view
         .map(pathFromNode(_, value))
         .find(_.isDefined)
         .flatten
